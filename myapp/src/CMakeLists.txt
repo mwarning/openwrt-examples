@@ -3,4 +3,4 @@ project(MyApp)
 
 add_executable(myapp main.c)
 
-INSTALL(TARGETS myapp RUNTIME DESTINATION sbin)
+INSTALL(TARGETS myapp RUNTIME DESTINATION /usr/bin/)
