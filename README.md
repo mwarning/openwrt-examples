@@ -17,7 +17,7 @@ The following files will be present on the router:
 * /etc/config/myapp
 * /etc/init.d/myapp
 
-This software is licensed under the Public Domain.
+This software is licensed under the Public Domain.<br />
 It was tested using OpenWRT "Attitude Adjustment".
 
 ### 1. Build the image:
