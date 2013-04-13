@@ -9,6 +9,7 @@ Makefile.
 
 This example includes a dummy daemon program written in C,<br />
 an UCI configuration file and a very basic init script.
+CMake is used for building the source code.
 
 The following files will be present on the router:
 
