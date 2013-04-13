@@ -1,0 +1,36 @@
+#!/bin/sh /etc/rc.common
+
+START=95
+
+LIST_SEP="
+"
+MYAPP_COMMAND=/usr/bin/myapp
+
+
+section_enabled() {
+	config_get_bool enabled "$1" 'enabled' 0
+	[ $enabled -gt 0 ]
+}
+
+start_instance() {
+	local s="$1"
+
+	section_enabled "$s" || return 1
+
+	eval service_start "'$MYAPP_COMMAND'"
+}
+
+stop_instance() {
+	local s="$1"
+	service_stop "$MYAPP_COMMAND"
+}
+
+start() {
+	config_load 'myapp'
+	config_foreach start_instance 'myapp'
+}
+
+stop() {
+	config_load 'myapp'
+	config_foreach stop_instance 'myapp'
+}
