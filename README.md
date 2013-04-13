@@ -3,11 +3,11 @@
 This project is an example to show how to start creating
 an OpenWRT application/package.
 
-For this example, the source code is located within the package
-so there is no need to have the code downloaded by the package
+For this example, the source code is located within the package.<br />
+This way there is no need to have the code downloaded by the package
 Makefile.
 
-This example includes a dummy daemon program written in C,
+This example includes a dummy daemon program written in C,<br />
 an UCI configuration file and a very basic init script.
 
 The following files will be present on the router:
@@ -17,6 +17,7 @@ The following files will be present on the router:
 * /etc/init.d/myapp
 
 This software is licensed under the Public Domain.
+It was tested using OpenWRT "Attitude Adjustment".
 
 ### 1. Build the image:
 
@@ -30,23 +31,27 @@ cd openwrt
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+git clone https://github.com/mwarning/openwrt-example-program.git
+cp -rf openwrt-example-program/myapp/ package/
+rm -rf openwrt-example-program/
+
 make defconfig
 make menuconfig
 </pre>
 
-Now select the right Target System and Target Profile
-and myapp in section "Utils".
+Now select the right Target System and Target Profile.<br />
+Also mark myapp in section "Utilities" twice until it is marked as <*>.<br />
 Finally - build the image:
 <pre>
 make
 </pre>
 
-Your can now flash your router using the right image file in bin/.
+You can now flash your router using the right image file in bin/.
 
 ### 2. Test program.
 
-To test your program you need to login into your router (telnet or ssh).
-Your can execute `myapp` or `/etc/init.d/myapp start` on the console.
+To test your program you need to login into your router (telnet or ssh).<br />
+You can execute `myapp` or `/etc/init.d/myapp start` on the console.
 
-The application will show a short message before it disconnects
+The application will show a short message before it disconnects<br />
 from the console and will run for 60 seconds as background process.
