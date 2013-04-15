@@ -1,10 +1,10 @@
-### 0. Introduction:
+### Introduction:
 
 This project is an example to show how to start creating
 an OpenWRT application/package.
 
 For this example, the source code is located within the package.<br />
-This way there is no need to have the code downloaded by the package
+This way there is no need to have the code being downloaded by the package
 Makefile.
 
 This example includes a dummy daemon program written in C,<br />
@@ -20,7 +20,7 @@ The following files will be present on the router:
 This software is licensed under the Public Domain.<br />
 It was tested using OpenWRT "Attitude Adjustment".
 
-### 1. Build the image:
+### Build the image:
 
 These are the instructions to build an image
 for your router including myapp:
@@ -49,7 +49,7 @@ make
 
 You can now flash your router using the right image file in bin/.
 
-### 2. Test program.
+### Test program.
 
 To test your program you need to login into your router (telnet or ssh).<br />
 You can execute `myapp` or `/etc/init.d/myapp start` on the console.
