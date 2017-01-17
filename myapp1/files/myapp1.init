@@ -4,7 +4,7 @@ START=95
 
 LIST_SEP="
 "
-MYAPP_COMMAND=/usr/bin/myapp
+MYAPP_COMMAND=/usr/bin/myapp1
 
 
 section_enabled() {
@@ -26,11 +26,11 @@ stop_instance() {
 }
 
 start() {
-	config_load 'myapp'
-	config_foreach start_instance 'myapp'
+	config_load 'myapp1'
+	config_foreach start_instance 'myapp1'
 }
 
 stop() {
-	config_load 'myapp'
-	config_foreach stop_instance 'myapp'
+	config_load 'myapp1'
+	config_foreach stop_instance 'myapp1'
 }

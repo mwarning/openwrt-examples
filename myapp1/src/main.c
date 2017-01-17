@@ -5,7 +5,7 @@
 
 int main(int argc, char **argv)
 {
-	printf("Hello World! Forking to background now and exit in one minute.\n");
+	printf("Hi, this is myapp1! Forking to background now and exit in one minute.\n");
 
 	pid_t result = fork();
 
@@ -16,15 +16,15 @@ int main(int argc, char **argv)
 	}
 	else if (result == 0)
 	{
-		//Create a session and set the process group id.
+		// Create a session and set the process group id.
 		setsid();
 
-		//Just sleep a minute and exit the daemon.
+		// Just sleep a minute and exit the daemon.
 		sleep(60);
 	}
 	else
 	{
-		//parent
+		// Exit parent progess.
 		return 0;
 	}
 }

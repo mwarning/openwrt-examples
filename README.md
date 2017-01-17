@@ -1,58 +1,68 @@
 ### Introduction:
 
-This project is an example to show how to start creating
+This projects contains mutliple examples to show how to start creating
 an OpenWRT application/package.
 
-For this example, the source code is located within the package.<br />
-This way there is no need to have the code being downloaded by the package
-Makefile.
+Feel free to submit new examples and fix errors! :-)
 
-This example includes a dummy daemon program written in C,<br />
-an UCI configuration file and a very basic init script.
-CMake is used for building the source code.
+myapp1:
+* dummy daemon written C
+* the following files will be installed:
+  * /usr/bin/myapp1
+  * /etc/config/myapp1
+  * /etc/init.d/myapp1
+* cmake build system
+* source code is part of the package
 
-The following files will be present on the router:
+myapp2
+* dummy program written in C that just prints out a message
+* the following files will be installed:
+  * /usr/bin/myapp2
+* make build system
+* source code is part of the package
+* package let you select features called foo and bar
 
-* /usr/bin/myapp
-* /etc/config/myapp
-* /etc/init.d/myapp
-
-This software is licensed under the Public Domain.<br />
-It was tested using OpenWRT "Attitude Adjustment".
+These examples are licensed under CC0-1.0 / placed into Public Domain.
 
 ### Build the image:
 
 These are the instructions to build an image
-for your router including myapp:
+for your router including the example applications:
 
-<pre>
-svn co svn://svn.openwrt.org/openwrt/trunk openwrt
-cd openwrt
+```
+git clone -b lede-17.01 git://git.lede-project.org/source.git
+cd source
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
 git clone https://github.com/mwarning/openwrt-example-program.git
-cp -rf openwrt-example-program/myapp/ package/
+cp -rf openwrt-example-program/myapp* package/
 rm -rf openwrt-example-program/
 
 make defconfig
 make menuconfig
-</pre>
+```
 
-Now select the right Target System and Target Profile.<br />
-Also mark myapp in section "Utilities" twice until it is marked as <*>.<br />
+Now select the right Target System and Target Profile.
+Also select the examples you like to build:
+
+* "Utilities" => "myapp1"
+* "Net" => "VPN" => "myapp2"
+
+The package are selected when there is a <*> in front of the name (hit the sapce bar twice).
+
 Finally - build the image:
-<pre>
+```
 make
-</pre>
+```
 
 You can now flash your router using the right image file in bin/.
 
 ### Test program.
 
-To test your program you need to login into your router (telnet or ssh).<br />
+To test your program you need to login into your router (telnet or ssh).
 You can execute `myapp` or `/etc/init.d/myapp start` on the console.
 
-The application will show a short message before it disconnects<br />
+The application will show a short message before it disconnects
 from the console and will run for 60 seconds as background process.

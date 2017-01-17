@@ -1,0 +1,5 @@
+
+config interface
+	option network 'lan'
+	#option ifname 'br-lan'
+	list prefix 'fd12:3456:7890:abcd::/64'
