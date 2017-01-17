@@ -24,6 +24,10 @@ myapp2
 
 These examples are licensed under CC0-1.0 / placed into Public Domain.
 
+Official OpenWrt/LEDE packages can be found here and are a good reference:
+* https://github.com/openwrt/packages
+* https://github.com/openwrt-routing/packages
+
 ### Build Images and Packages
 
 These are the instructions to build an image
