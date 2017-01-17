@@ -1,4 +1,4 @@
-### Introduction:
+### Introduction
 
 This projects contains mutliple examples to show how to start creating
 an OpenWRT application/package.
@@ -24,7 +24,7 @@ myapp2
 
 These examples are licensed under CC0-1.0 / placed into Public Domain.
 
-### Build the image:
+### Build Images and Packages
 
 These are the instructions to build an image
 for your router including the example applications:
@@ -57,12 +57,17 @@ Finally - build the image:
 make
 ```
 
-You can now flash your router using the right image file in bin/.
+You can now flash your router using the correct image file inside bin/targets.
+The *.ipk packages are located in bin/packages and can be installed e.g. using `opkg install myapp-0.1-1.ipk`.
 
-### Test program.
+### Test programs
 
 To test your program you need to login into your router (telnet or ssh).
-You can execute `myapp` or `/etc/init.d/myapp start` on the console.
 
+* myapp1:
+You can execute `myapp1` or `/etc/init.d/myapp1 start` on the console.
 The application will show a short message before it disconnects
 from the console and will run for 60 seconds as background process.
+
+* myapp2
+Or just call `myapp2` to start that program.
