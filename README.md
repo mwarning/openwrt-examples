@@ -6,7 +6,7 @@ an OpenWRT application/package.
 Feel free to submit new examples and fix errors! :-)
 
 myapp1:
-* dummy daemon written C
+* dummy daemon written C that  forks into background and exits after 60 seconds
 * the following files will be installed:
   * /usr/bin/myapp1
   * /etc/config/myapp1
