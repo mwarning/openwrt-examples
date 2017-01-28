@@ -51,7 +51,7 @@ Now select the right "Target System" and "Target Profile" for your target device
 Also select the examples you like to build:
 
 * "Utilities" => "myapp1"
-* "Net" => "VPN" => "myapp2"
+* "Network" => "VPN" => "myapp2"
 
 Packages are selected when there is a <*> in front of the name (hit the sapce bar twice).
 
