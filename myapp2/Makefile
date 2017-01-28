@@ -30,7 +30,7 @@ define Package/myapp2/description
 	Some example Programm called myapp2
 endef
 
-define Package/kadnode/config
+define Package/myapp2/config
 	source "$(SOURCE)/Config.in"
 endef
 
