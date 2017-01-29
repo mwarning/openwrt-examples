@@ -77,5 +77,5 @@ The application will show a short message before it disconnects
 from the console and runs for some seconds as background process before it exits.
 The duration can be configured in /etc/config/example1.
 
-* example2
+* example2:
 `example2`on the console will just start that program.
