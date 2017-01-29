@@ -1,0 +1,14 @@
+menu "Configuration"
+	depends on PACKAGE_example2
+
+config EXAMPLE2_ENABLE_FOO
+	bool "Enable Feature Foo"
+	depends on PACKAGE_example2
+	default y
+
+config EXAMPLE2_ENABLE_BAR
+	bool "Enable feature Bar"
+	depends on PACKAGE_example2
+	default n
+
+endmenu

@@ -5,19 +5,19 @@ The examples were tested with the LEDE-17.01 release.
 
 Feel free to submit new examples and fix errors! :-)
 
-myapp1:
+example1:
 * dummy daemon written C that forks into background and exits after some (configurable) time.
 * the following files will be installed:
-  * /usr/bin/myapp1
-  * /etc/config/myapp1
-  * /etc/init.d/myapp1
+  * /usr/bin/example1
+  * /etc/config/example1
+  * /etc/init.d/example1
 * cmake build system
 * source code is part of the package
 
-myapp2
+example2
 * dummy program written in C that just prints out a message
 * the following files will be installed:
-  * /usr/bin/myapp2
+  * /usr/bin/example2
 * make build system
 * source code is part of the package
 * package let you select features called "foo" and "bar"
@@ -51,8 +51,8 @@ make menuconfig
 Now select the right "Target System" and "Target Profile" for your target device.
 Also select the examples you like to build:
 
-* "Utilities" => "myapp1"
-* "Network" => "VPN" => "myapp2"
+* "Utilities" => "example1"
+* "Network" => "VPN" => "example2"
 
 Packages are selected when there is a <*> in front of the name (hit the sapce bar twice).
 
@@ -71,11 +71,11 @@ The package can then be installed calling e.g. `opkg install myapp-0.1-1.ipk`.
 
 To test your program you need to login into your router (telnet or ssh).
 
-* myapp1:
-You can execute `myapp1` or `/etc/init.d/myapp1 start` on the console.
+* example1:
+You can execute `example1` or `/etc/init.d/example1 start` on the console.
 The application will show a short message before it disconnects
 from the console and runs for some seconds as background process before it exits.
-The duration can be configured in /etc/config/myapp1.
+The duration can be configured in /etc/config/example1.
 
-* myapp2
-`myapp2`on the console will just start that program.
+* example2
+`example2`on the console will just start that program.

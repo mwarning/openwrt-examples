@@ -4,7 +4,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=myapp1
+PKG_NAME:=example1
 PKG_VERSION:=0.1
 PKG_RELEASE:=1
 
@@ -14,7 +14,7 @@ PKG_LICENSE:=CC0-1.0
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-define Package/myapp1
+define Package/example1
 	SECTION:=utils
 	# Should this package be selected by default?
 	#DEFAULT:=y
@@ -24,7 +24,7 @@ define Package/myapp1
 	URL:=https://www.example.com
 endef
 
-define Package/myapp1/description
+define Package/example1/description
 	This is some dummy application.
 endef
 
@@ -33,14 +33,14 @@ define Build/Prepare
 	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
-define Package/myapp1/install
+define Package/example1/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/myapp1 $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/example1 $(1)/usr/bin/
 
 	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) files/myapp1.init $(1)/etc/init.d/myapp1
+	$(INSTALL_BIN) files/example1.init $(1)/etc/init.d/example1
 	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) files/myapp1.config $(1)/etc/config/myapp1
+	$(INSTALL_CONF) files/example1.config $(1)/etc/config/example1
 endef
 
-$(eval $(call BuildPackage,myapp1))
+$(eval $(call BuildPackage,example1))

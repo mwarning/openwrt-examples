@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <errno.h>
 
+
 int main(int argc, char **argv)
 {
 	int secs = 20;
@@ -14,7 +15,8 @@ int main(int argc, char **argv)
 		secs = atoi(argv[1]);
 	}
 
-	printf("Hi, this is myapp1!\nForking into background now and exit after %d seconds.\n", secs);
+	printf("Hi, this is example1!\n");
+	printf("Forking into background now and exit after %d seconds.\n", secs);
 
 	pid_t result = fork();
 

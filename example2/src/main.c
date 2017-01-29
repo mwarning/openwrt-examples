@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv)
 {
-	printf("Hi, this is myapp2.\n");
+	printf("Hi, this is example2.\n");
 
 #if defined(FOO)
 	printf("Feature foo was selected.\n");

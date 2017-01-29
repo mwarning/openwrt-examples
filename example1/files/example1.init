@@ -4,7 +4,7 @@ START=95
 
 LIST_SEP="
 "
-MYAPP_COMMAND=/usr/bin/myapp1
+EXAMPLE_COMMAND=/usr/bin/example1
 
 
 section_enabled() {
@@ -22,20 +22,20 @@ start_instance() {
 
 	[ $enabled -gt 0 ] || return 1
 
-	eval service_start "'$MYAPP_COMMAND' $duration"
+	eval service_start "'$EXAMPLE_COMMAND' $duration"
 }
 
 stop_instance() {
 	local s="$1"
-	service_stop "$MYAPP_COMMAND"
+	service_stop "$EXAMPLE_COMMAND"
 }
 
 start() {
-	config_load 'myapp1'
-	config_foreach start_instance 'myapp1'
+	config_load 'example1'
+	config_foreach start_instance 'example1'
 }
 
 stop() {
-	config_load 'myapp1'
-	config_foreach stop_instance 'myapp1'
+	config_load 'example1'
+	config_foreach stop_instance 'example1'
 }
