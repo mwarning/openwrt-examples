@@ -1,4 +1,3 @@
-all: myapp2
 
-all: myapp2.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -Wall -o $@ $^ $(LDLIBS) -lrt
+all: main.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -Wall -o myapp2 $^ $(LDLIBS) -lrt

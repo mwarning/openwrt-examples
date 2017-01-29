@@ -1,4 +1,7 @@
 
+#include <sys/types.h>
+#include <unistd.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -16,9 +19,6 @@ int main(int argc, char **argv)
 	}
 	else if (result == 0)
 	{
-		// Create a session and set the process group id.
-		setsid();
-
 		// Just sleep a minute and exit the daemon.
 		sleep(60);
 	}
