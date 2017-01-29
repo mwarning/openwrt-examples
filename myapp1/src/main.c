@@ -25,12 +25,9 @@ int main(int argc, char **argv)
 	}
 	else if (result == 0)
 	{
-		// Just sleep a minute and exit the daemon.
+		// Child process sleeps some seconds before exit.
 		sleep(secs);
 	}
-	else
-	{
-		// Exit parent progess.
-		return 0;
-	}
+
+	return 0;
 }
