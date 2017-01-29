@@ -41,7 +41,7 @@ cd source
 ./scripts/feeds install -a
 
 git clone https://github.com/mwarning/lede-examples.git
-cp -rf lede-examples/myapp* package/
+cp -rf lede-examples/example* package/
 rm -rf lede-examples/
 
 make defconfig
