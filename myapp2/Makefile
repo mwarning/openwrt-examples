@@ -17,9 +17,11 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/myapp2
 	SECTION:=net
+	# Should this package be selected by default?
 	#DEFAULT:=y
 	CATEGORY:=Network
 	TITLE:=Some other dummy application.
+	# Feature FOO also needs libsodium:
 	DEPENDS:=+librt +CONFIG_MYAPP2_ENABLE_FOO:libsodium
 	MAINTAINER:= Foo Bar <foo@example.com>
 	URL:=https://www.example.com
