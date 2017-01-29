@@ -1,6 +1,7 @@
 ### Introduction
 
 This project contains mutliple examples to show how to package an application for [LEDE](https://lede-project.org).
+The examples were tested with the LEDE-17.01 release.
 
 Feel free to submit new examples and fix errors! :-)
 
