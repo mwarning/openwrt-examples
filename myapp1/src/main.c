@@ -8,7 +8,13 @@
 
 int main(int argc, char **argv)
 {
-	printf("Hi, this is myapp1! Forking to background now and exit in one minute.\n");
+	int secs = 20;
+
+	if (argc == 2) {
+		secs = atoi(argv[1]);
+	}
+
+	printf("Hi, this is myapp1!\nForking into background now and exit after %d seconds.\n", secs);
 
 	pid_t result = fork();
 
@@ -20,7 +26,7 @@ int main(int argc, char **argv)
 	else if (result == 0)
 	{
 		// Just sleep a minute and exit the daemon.
-		sleep(60);
+		sleep(secs);
 	}
 	else
 	{

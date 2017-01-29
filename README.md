@@ -5,7 +5,7 @@ This project contains mutliple examples to show how to package an application fo
 Feel free to submit new examples and fix errors! :-)
 
 myapp1:
-* dummy daemon written C that forks into background and exits after 60 seconds
+* dummy daemon written C that forks into background and exits after some (configurable) time.
 * the following files will be installed:
   * /usr/bin/myapp1
   * /etc/config/myapp1
@@ -73,7 +73,8 @@ To test your program you need to login into your router (telnet or ssh).
 * myapp1:
 You can execute `myapp1` or `/etc/init.d/myapp1 start` on the console.
 The application will show a short message before it disconnects
-from the console and runs for 60 seconds as background process.
+from the console and runs for some seconds as background process before it exits.
+The duration can be configured in /etc/config/myapp1.
 
 * myapp2
 `myapp2`on the console will just start that program.

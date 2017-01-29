@@ -14,10 +14,15 @@ section_enabled() {
 
 start_instance() {
 	local s="$1"
+	local duration
+	local enabled
 
-	section_enabled "$s" || return 1
+	config_get_bool enabled "$1" 'enabled' 0
+	config_get duration "$1" 'duration' 0
 
-	eval service_start "'$MYAPP_COMMAND'"
+	[ $enabled -gt 0 ] || return 1
+
+	eval service_start "'$MYAPP_COMMAND' $duration"
 }
 
 stop_instance() {
