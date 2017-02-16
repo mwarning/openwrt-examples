@@ -79,3 +79,69 @@ The duration can be configured in /etc/config/example1.
 
 * example2:
 `example2`on the console will just start that program.
+
+### Use Remote Source Location
+
+This is the most common package configuration.
+The source code is downloaded as a compressed file from somewhere on the Internet.
+
+First part of a package Makefile:
+```
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=netdata
+PKG_VERSION:=1.4.0
+PKG_RELEASE:=3
+PKG_MAINTAINER:=Daniel Engberg <daniel.engberg.lists@pyret.net>
+PKG_LICENSE:=GPL-3.0
+PKG_LICENSE_FILES:=COPYING
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=http://firehol.org/download/netdata/releases/v$(PKG_VERSION)
+PKG_SOURCE_VERSION:=3028b87ee19e8550df6b9decc49733d595e0bd6e
+```
+
+The source code can also be checked out from a remote git repository by branch, tag or commit id.
+
+First part of a package Makefile:
+```
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=stoken
+PKG_VERSION:=0.8
+PKG_REV:=c4d79ffbf5053e44be4b64da22b1b7fb6a51daf2
+PKG_RELEASE:=2
+
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/cernekee/stoken.git
+
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+```
+
+PKG_REV can be a branch name or commit id (sha1 hash).
+
+### Use Local Source Location
+
+For development purposes, it is often useful to specify a local repository on the same computer to apply new commits and build new images/packages without much hassle.
+
+1. Create a soft link called git-src in the same folder of your package Makefile. I needs to point to the .git folder of your local repository checkout.
+```
+ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
+```
+
+2. Call `make menuconfig` in your lede folder and enable this feature:
+```
+"Advanced configuration options (for developers)" => "Enable package source tree override"
+```
+
+3. In your repo, create commits and rebuild your package in the lede folder:
+
+```
+make package/example3/{clean,compile} V=s
+```
+
+4. Your package should now appear/be updated in bin/packages/.
+
+Be aware that changes will only be applied when they inside a commit!
