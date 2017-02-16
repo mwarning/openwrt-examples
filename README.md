@@ -67,7 +67,7 @@ The single *.ipk packages are located in ./bin/packages, in case you want to ins
 To install/update a package, transfer the ipk file to your target device to /tmp/ using scp.
 The package can then be installed calling e.g. `opkg install myapp-0.1-1.ipk`.
 
-### Test packages
+### Install/Test Packages
 
 To test your program you need to login into your router (telnet or ssh).
 
@@ -85,7 +85,7 @@ The duration can be configured in /etc/config/example1.
 This is the most common package configuration.
 The source code is downloaded as a compressed file from somewhere on the Internet.
 
-First part of a package Makefile:
+First part of an example package Makefile:
 ```
 include $(TOPDIR)/rules.mk
 
@@ -101,9 +101,9 @@ PKG_SOURCE_URL:=http://firehol.org/download/netdata/releases/v$(PKG_VERSION)
 PKG_SOURCE_VERSION:=3028b87ee19e8550df6b9decc49733d595e0bd6e
 ```
 
-The source code can also be checked out from a remote git repository by branch, tag or commit id.
+The source code can also be checked out from a remote git repository by branch, tag or commit id:
 
-First part of a package Makefile:
+First part of an example package Makefile:
 ```
 include $(TOPDIR)/rules.mk
 
@@ -128,7 +128,7 @@ For development purposes, it is often useful to specify a local repository on th
 
 1. Create a soft link called git-src in the same folder of your package Makefile. I needs to point to the .git folder of your local repository checkout.
 ```
-ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
+ln -s /my/own/project/repo/example3/.git lede/package/example3/git-src
 ```
 
 2. Call `make menuconfig` in your lede folder and enable this feature:
@@ -136,12 +136,12 @@ ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 "Advanced configuration options (for developers)" => "Enable package source tree override"
 ```
 
-3. In your repo, create commits and rebuild your package in the lede folder:
+3. In your git repository folder, create new commits and then rebuild your package in the lede folder:
 
 ```
 make package/example3/{clean,compile} V=s
 ```
 
-4. Your package should now appear/be updated in bin/packages/.
+4. Your package should now appear in bin/packages/.
 
-Be aware that changes will only be applied when they inside a commit!
+Be aware that changes will only be included in the paclahe when they were inside a commit!
