@@ -54,7 +54,7 @@ Also select the examples you like to build:
 * "Utilities" => "example1"
 * "Network" => "VPN" => "example2"
 
-Packages are selected when there is a <*> in front of the name (hit the sapce bar twice).
+Packages are selected when there is a <*> in front of the name (hit the space bar twice).
 
 Finally - build the image:
 ```
