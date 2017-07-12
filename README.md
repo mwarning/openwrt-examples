@@ -144,4 +144,4 @@ make package/example3/{clean,compile} V=s
 
 4. Your package should now appear in bin/packages/.
 
-Be aware that changes will only be included in the paclahe when they were inside a commit!
+Be aware that changes will only be included in the binary when they are part of a commit!
