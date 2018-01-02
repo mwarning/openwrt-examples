@@ -1,6 +1,6 @@
 ### Introduction
 
-This project contains multiple examples to show how to package an application for [LEDE](https://lede-project.org).
+This project contains multiple examples to show how to package an application for [OpenWrt](https://openwrt.org).
 The examples were tested with the LEDE-17.01 release.
 
 Feel free to submit new examples and fix errors! :-)
@@ -24,7 +24,7 @@ example2
 
 These examples are licensed under CC0-1.0 / placed into Public Domain.
 
-Official OpenWrt/LEDE packages can be found here and are a good reference:
+Official OpenWrt packages can be found here and are a good reference:
 * https://github.com/openwrt/packages
 * https://github.com/openwrt-routing/packages
 
@@ -34,15 +34,15 @@ These are the instructions to build an image
 for your router including the example applications:
 
 ```
-git clone git://git.lede-project.org/source.git
-cd source
+git clone https://github.com/openwrt/openwrt
+cd openwrt
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-git clone https://github.com/mwarning/lede-examples.git
-cp -rf lede-examples/example* package/
-rm -rf lede-examples/
+git clone https://github.com/mwarning/openwrt-examples.git
+cp -rf openwrt-examples/example* package/
+rm -rf openwrt-examples/
 
 make defconfig
 make menuconfig
@@ -128,15 +128,15 @@ For development purposes, it is often useful to specify a local repository on th
 
 1. Create a soft link called git-src in the same folder of your package Makefile. I needs to point to the .git folder of your local repository checkout.
 ```
-ln -s /my/own/project/repo/example3/.git lede/package/example3/git-src
+ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 ```
 
-2. Call `make menuconfig` in your lede folder and enable this feature:
+2. Call `make menuconfig` in your openwrt folder and enable this feature:
 ```
 "Advanced configuration options (for developers)" => "Enable package source tree override"
 ```
 
-3. In your git repository folder, create new commits and then rebuild your package in the lede folder:
+3. In your git repository folder, create new commits and then rebuild your package in the openwrt folder:
 
 ```
 make package/example3/{clean,compile} V=s
