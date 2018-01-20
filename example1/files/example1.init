@@ -1,10 +1,7 @@
 #!/bin/sh /etc/rc.common
 
 START=95
-
-LIST_SEP="
-"
-EXAMPLE_COMMAND=/usr/bin/example1
+PROG=/usr/bin/example1
 
 
 section_enabled() {
@@ -13,21 +10,22 @@ section_enabled() {
 }
 
 start_instance() {
-	local s="$1"
+	local cfg="$1"
 	local duration
 	local enabled
 
-	config_get_bool enabled "$1" 'enabled' 0
-	config_get duration "$1" 'duration' 0
+	config_get_bool enabled "$cfg" 'enabled' 0
+	config_get duration "$cfg" 'duration' 0
 
 	[ $enabled -gt 0 ] || return 1
 
-	eval service_start "'$EXAMPLE_COMMAND' $duration"
+	# Usually, procd should be used for services running in the background. See example3.
+	eval service_start "'$PROG' $duration"
 }
 
 stop_instance() {
-	local s="$1"
-	service_stop "$EXAMPLE_COMMAND"
+	local cfg="$1"
+	service_stop "$PROG"
 }
 
 start() {
