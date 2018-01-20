@@ -22,6 +22,14 @@ example2
 * source code is part of the package
 * package let you select features called "foo" and "bar"
 
+example3
+* like example1, but runs in background by means of [procd](https://wiki.openwrt.org/inbox/procd-init-scripts)
+* this is the preferred way to run a daemon on OpenWrt
+* the following files will be installed:
+  * /usr/bin/example3
+* make build system
+* source code is part of the package
+
 These examples are licensed under CC0-1.0 / placed into Public Domain.
 
 Official OpenWrt packages can be found here and are a good reference:

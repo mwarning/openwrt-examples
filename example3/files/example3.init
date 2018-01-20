@@ -1,0 +1,47 @@
+#!/bin/sh /etc/rc.common
+
+START=95
+USE_PROCD=1
+PROG=/usr/bin/example3
+
+
+section_enabled() {
+	config_get_bool enabled "$1" 'enabled' 0
+	[ $enabled -gt 0 ]
+}
+
+start_instance() {
+	local cfg="$1"
+	local duration
+	local enabled
+
+	config_get_bool enabled "$cfg" 'enabled' 0
+	config_get duration "$cfg" 'duration' 0
+
+	[ $enabled -gt 0 ] || return 1
+
+	procd_open_instance
+	procd_set_param command $PROG $duration
+	# Send stdout/stderr output to the system log
+	# Use command logread to see the log
+	procd_set_param stderr 1
+	procd_set_param stdout 1
+	procd_close_instance
+}
+
+stop_instance() {
+	local cfg="$1"
+	# Nothing to do
+}
+
+start_service() {
+	config_load 'example3'
+	config_foreach start_instance 'example3'
+}
+
+# This is not neccessary here,
+# but we include it for the sake of the example
+stop_service() {
+	config_load 'example3'
+	config_foreach stop_instance 'example3'
+}
