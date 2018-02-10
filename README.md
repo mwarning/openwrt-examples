@@ -5,6 +5,8 @@ The examples were tested with the LEDE-17.01 release.
 
 Feel free to submit new examples and fix errors! :-)
 
+## Examples
+
 example1:
 * dummy daemon written C that forks into background and exits after some (configurable) time.
 * the following files will be installed:
@@ -62,7 +64,7 @@ Also select the examples you like to build:
 * "Utilities" => "example1"
 * "Network" => "VPN" => "example2"
 
-Packages are selected when there is a <*> in front of the name (hit the space bar twice).
+Packages are selected when there is a <\*> in front of the name (hit the space bar twice).
 
 Finally - build the image:
 ```
@@ -70,7 +72,7 @@ make
 ```
 
 You can now flash your router using the correct image file inside ./bin/targets/. The images usually contain all build packages already.
-The single *.ipk packages are located in ./bin/packages, in case you want to install them on other devices.
+The single \*.ipk packages are located in ./bin/packages, in case you want to install them on other devices.
 
 To install/update a package, transfer the ipk file to your target device to /tmp/ using scp.
 The package can then be installed calling e.g. `opkg install myapp-0.1-1.ipk`.
@@ -100,7 +102,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=netdata
 PKG_VERSION:=1.4.0
 PKG_RELEASE:=3
-PKG_MAINTAINER:=Daniel Engberg <daniel.engberg.lists@pyret.net>
+PKG_MAINTAINER:=Bob Smith <bob.smith@example.net>
 PKG_LICENSE:=GPL-3.0
 PKG_LICENSE_FILES:=COPYING
 
@@ -128,7 +130,17 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 ```
 
-PKG_REV can be a branch name or commit id (sha1 hash).
+TODO: show what variables are optional
+
+PKG_NAME: Package name. Use lower case letters.
+PKG_LICENSE: Package license. See the (SPDX license list)[https://spdx.org/licenses/] for valid values.
+PKG_VERSION: The same version as program to be packaged. If you do not know how to version projects, have a look at (semantic versioning)[https://semver.org/].
+PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. reset to 1 if PKG_VERSION changes.
+PKG_REV: Branch name or git commit id (sha1 hash).
+PKG_SOURCE_URL: Path to a download directory or source control repository (e.g. git, svn, ..)
+PKG_MAINTAINER: Name and Email address of the maintainer. See example for prefered format.
+PKG_LICENSE_FILES: A file in the package that has licensing information.
+PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`
 
 ### Use Local Source Location
 
@@ -152,4 +164,4 @@ make package/example3/{clean,compile} V=s
 
 4. Your package should now appear in bin/packages/.
 
-Be aware that changes will only be included in the binary when they are part of a commit!
+Be aware that changes will only be included in the binary when they are part of a commit in the git repository!
