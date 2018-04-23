@@ -132,15 +132,15 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 
 TODO: show what variables are optional
 
-PKG_NAME: Package name. Use lower case letters.
-PKG_LICENSE: Package license. See the (SPDX license list)[https://spdx.org/licenses/] for valid values.
-PKG_VERSION: The same version as program to be packaged. If you do not know how to version projects, have a look at (semantic versioning)[https://semver.org/].
-PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. reset to 1 if PKG_VERSION changes.
-PKG_REV: Branch name or git commit id (sha1 hash).
-PKG_SOURCE_URL: Path to a download directory or source control repository (e.g. git, svn, ..)
-PKG_MAINTAINER: Name and Email address of the maintainer. See example for prefered format.
-PKG_LICENSE_FILES: A file in the package that has licensing information.
-PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`
+* PKG_NAME: Package name. Use lower case letters.
+* PKG_LICENSE: Package license. See the [SPDX license list](https://spdx.org/licenses/) for valid values.
+* PKG_VERSION: The same version as program to be packaged. If you do not know how to version projects, have a look at [semantic versioning](https://semver.org/).
+* PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. reset to 1 if PKG_VERSION changes.
+* PKG_REV: Branch name or git commit id (sha1 hash).
+* PKG_SOURCE_URL: Path to a download directory or source control repository (e.g. git, svn, ..)
+* PKG_MAINTAINER: Name and Email address of the maintainer. See example for prefered format.
+* PKG_LICENSE_FILES: A file in the package that has licensing information.
+* PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`
 
 ### Use Local Source Location
 
