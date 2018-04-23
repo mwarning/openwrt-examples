@@ -165,3 +165,36 @@ make package/example3/{clean,compile} V=s
 4. Your package should now appear in bin/packages/.
 
 Be aware that changes will only be included in the binary when they are part of a commit in the git repository!
+
+### Build package for multiple targets
+
+Sometimes it is necessary to build packages for multiple targets without building the images:
+
+```
+targets='
+  CONFIG_TARGET_arm64=y
+  CONFIG_TARGET_ath25=y
+'
+
+for target in $targets; do
+  echo "$target" > .config
+  echo "CONFIG_PACKAGE_example1=y" >> .config
+
+  # Debug output
+  echo "Build: $target"
+
+  # Complete config
+  make defconfig
+
+  # Build toolchain
+  make -j4 tools/install
+  make -j4 toolchain/install
+
+  # Build package
+  make package/example1/{clean,compile} V=s
+
+  # Free space
+  #rm -rf build_dir/target-*
+  #rm -rf build_dir/toolchain-*
+done
+```
