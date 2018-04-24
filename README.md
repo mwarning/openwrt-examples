@@ -166,35 +166,33 @@ make package/example3/{clean,compile} V=s
 
 Be aware that changes will only be included in the binary when they are part of a commit in the git repository!
 
-### Build package for multiple targets
+### Build package for all architectures
 
-Sometimes it is necessary to build packages for multiple targets without building the images:
+Sometimes it is necessary to build packages for all architectures without building the images for all targets.
+This script build the package once for each architecture (first target is used by architecture):
 
 ```
-targets='
-  CONFIG_TARGET_arm64=y
-  CONFIG_TARGET_ath25=y
-'
+#!/bin/sh
 
-for target in $targets; do
-  echo "$target" > .config
-  echo "CONFIG_PACKAGE_example1=y" >> .config
+# dumpinfo.pl is used to get all targets configurations:
+# https://git.openwrt.org/?p=buildbot.git;a=blob;f=phase1/dumpinfo.pl
+
+./dumpinfo.pl architectures | while read pkgarch target1 rest; do
+  echo "CONFIG_TARGET_${target1%/*}=y" > .config
+  echo "CONFIG_TARGET_${target1%/*}_${target1#*/}=y" >> .config
 
   # Debug output
-  echo "Build: $target"
+  echo "pkgarch: $pkgarch, target1: $target1"
 
-  # Complete config
   make defconfig
-
-  # Build toolchain
-  make -j4 tools/install
-  make -j4 toolchain/install
+  make -j4 tools/compile
+  make -j4 toolchain/compile
 
   # Build package
-  make package/example1/{clean,compile} V=s
+  make package/example1/{clean,compile}
 
-  # Free space
-  #rm -rf build_dir/target-*
-  #rm -rf build_dir/toolchain-*
+  # Free space (optional)
+  rm -rf build_dir/target-*
+  rm -rf build_dir/toolchain-*
 done
 ```
