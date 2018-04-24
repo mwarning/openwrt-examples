@@ -185,8 +185,8 @@ This script build the package once for each architecture (first target is used b
   echo "pkgarch: $pkgarch, target1: $target1"
 
   make defconfig
-  make -j4 tools/compile
-  make -j4 toolchain/compile
+  make -j4 tools/install
+  make -j4 toolchain/install
 
   # Build package
   make package/example1/{clean,compile}
