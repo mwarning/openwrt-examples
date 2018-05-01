@@ -180,6 +180,7 @@ This script build the package once for each architecture (first target is used b
 ./dumpinfo.pl architectures | while read pkgarch target1 rest; do
   echo "CONFIG_TARGET_${target1%/*}=y" > .config
   echo "CONFIG_TARGET_${target1%/*}_${target1#*/}=y" >> .config
+  echo "CONFIG_PACKAGE_example1=y" >> .config
 
   # Debug output
   echo "pkgarch: $pkgarch, target1: $target1"
