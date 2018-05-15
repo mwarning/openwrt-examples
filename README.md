@@ -127,8 +127,21 @@ PKG_SOURCE_URL:=https://github.com/cernekee/stoken.git
 
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 ```
+
+This example uses the release source files that are created for each git tag:
+```
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=stoken
+PKG_VERSION:=0.8
+PKG_RELEASE:=2
+
+PKG_SOURCE_URL:=https://codeload.github.com/cernekee/stoken/tar.gz/v$(PKG_VERSION)?
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
+PKG_HASH:=1b3ccaa01cbb7548ef268d8b562059452826dc774529303c494418d1a450ca97
+```
+(The '?' at the end of the is a feature of github.com to get a file specified as in PKG_SOURCE)
 
 TODO: show what variables are optional
 
