@@ -8,7 +8,7 @@ Feel free to submit new examples and fix errors! :-)
 ## Examples
 
 example1:
-* dummy daemon written C that forks into background and exits after some (configurable) time.
+* dummy daemon written in C that forks into background and exits after some (configurable) time.
 * the following files will be installed:
   * /usr/bin/example1
   * /etc/config/example1
@@ -79,12 +79,11 @@ The package can then be installed calling e.g. `opkg install myapp-0.1-1.ipk`.
 
 ### Install/Test Packages
 
-To test your program you need to login into your router (telnet or ssh).
+To test your program you need to login in to your router (telnet or ssh).
 
 * example1:
 You can execute `example1` or `/etc/init.d/example1 start` on the console.
-The application will show a short message before it disconnects
-from the console and runs for some seconds as background process before it exits.
+The application will show a short message before it disconnects from the console and runs for some seconds as background process before it exits.
 The duration can be configured in /etc/config/example1.
 
 * example2:
@@ -138,10 +137,12 @@ PKG_VERSION:=0.8
 PKG_RELEASE:=2
 
 PKG_SOURCE_URL:=https://codeload.github.com/cernekee/stoken/tar.gz/v$(PKG_VERSION)?
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_HASH:=1b3ccaa01cbb7548ef268d8b562059452826dc774529303c494418d1a450ca97
 ```
 (The '?' at the end of the is a feature of github.com to get a file specified as in PKG_SOURCE)
+In the future, PKG_SOURCE_URL_FILE can be used to override PKG_SOURCE to be append PKG_SOURCE_URL
+
 
 TODO: show what variables are optional
 
@@ -151,6 +152,8 @@ TODO: show what variables are optional
 * PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. reset to 1 if PKG_VERSION changes.
 * PKG_REV: Branch name or git commit id (sha1 hash).
 * PKG_SOURCE_URL: Path to a download directory or source control repository (e.g. git, svn, ..)
+* PKG_SOURCE: Name of the source file to be downloaded. Will be appended to PKG_SOURCE_URL. The file be cached in dl/.
+* PKG_SOURCE_URL_FILE: Name of the source file to be downloaded. If set, will be used instead of PKG_SOURCE to be append to PKG_SOURCE_URL. (Not yet implemented)
 * PKG_MAINTAINER: Name and Email address of the maintainer. See example for prefered format.
 * PKG_LICENSE_FILES: A file in the package that has licensing information.
 * PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`
@@ -210,3 +213,9 @@ This script build the package once for each architecture (first target is used b
   rm -rf build_dir/toolchain-*
 done
 ```
+
+## Random notes
+
+* packages build into the image will be enabled by default (like `/etc/init.d/prpgram enable` has been called).
+** Usually build an `option enabled 0` in your /etc/config/program configuration file.
+** Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile
