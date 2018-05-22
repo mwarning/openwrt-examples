@@ -177,6 +177,7 @@ ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 ```
 make package/example3/{clean,compile} V=s
 ```
+(Note: The package needs to be selected in the `make menuconfig` menu)
 
 4. Your package should now appear in bin/packages/.
 
