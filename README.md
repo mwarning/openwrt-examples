@@ -13,20 +13,20 @@ example1:
   * /usr/bin/example1
   * /etc/config/example1
   * /etc/init.d/example1
-* cmake build system
+* uses cmake build system
 * source code is part of the package
 
 example2
 * dummy program written in C that just prints out a message
 * the following files will be installed:
   * /usr/bin/example2
-* make build system
+* uses make build system
 * source code is part of the package
 * package let you select features called "foo" and "bar"
 
 example3
 * like example1, but runs in background by means of [procd](https://wiki.openwrt.org/inbox/procd-init-scripts)
-* this is the preferred way to run a daemon on OpenWrt
+* this is the preferred way to run a program as a daemon on OpenWrt
 * the following files will be installed:
   * /usr/bin/example3
 * make build system
@@ -74,7 +74,7 @@ make
 You can now flash your router using the correct image file inside ./bin/targets/. The images usually contain all build packages already.
 The single \*.ipk packages are located in ./bin/packages, in case you want to install them on other devices.
 
-To install/update a package, transfer the ipk file to your target device to /tmp/ using scp.
+To install/update a package, transfer the ipk file to your target device to /tmp/ using `scp`.
 The package can then be installed calling e.g. `opkg install myapp-0.1-1.ipk`.
 
 ### Install/Test Packages
@@ -160,7 +160,7 @@ TODO: show what variables are optional
 
 ### Use Local Source Location
 
-For development purposes, it is often useful to specify a local repository on the same computer to apply new commits and build new images/packages without much hassle.
+For development purposes, it is often useful to specify a local (git) repository on the same computer to apply new commits and build new images/packages without much hassle.
 
 1. Create a soft link called git-src in the same folder of your package Makefile. I needs to point to the .git folder of your local repository checkout.
 ```
@@ -177,7 +177,7 @@ ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 ```
 make package/example3/{clean,compile} V=s
 ```
-(Note: The package needs to be selected in the `make menuconfig` menu)
+(Note: The package still needs to be selected in the `make menuconfig` menu)
 
 4. Your package should now appear in bin/packages/.
 
@@ -186,7 +186,7 @@ Be aware that changes will only be included in the binary when they are part of 
 ### Build package for all architectures
 
 Sometimes it is necessary to build packages for all architectures without building the images for all targets.
-This script build the package once for each architecture (first target is used by architecture):
+This script build the package once for each architecture:
 
 ```
 #!/bin/sh
