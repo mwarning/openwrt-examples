@@ -1,7 +1,7 @@
 ### Introduction
 
 This project contains multiple examples to show how to package an application for [OpenWrt](https://openwrt.org).
-The examples were tested with the LEDE-17.01 release.
+The examples were tested with the LEDE-17.01 release. It is a bit unorderly.
 
 Feel free to submit new examples and fix errors! :-)
 
@@ -40,42 +40,79 @@ Official OpenWrt packages can be found here and are a good reference:
 
 ### Build Images and Packages
 
-These are the instructions to build an image
-for your router including the example applications:
+These are the instructions to build an image for your router including the example applications:
 
 ```
 git clone https://github.com/openwrt/openwrt
 cd openwrt
 
+# Install packages from feeds
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+# Install the package manually
 git clone https://github.com/mwarning/openwrt-examples.git
 cp -rf openwrt-examples/example* package/
 rm -rf openwrt-examples/
 
-make defconfig
 make menuconfig
 ```
 
-Now select the right "Target System" and "Target Profile" for your target device.
+Now the build menu opens.
+
+#### Build menu
+
+The build menu let you select the correct "Target System" and "Target Profile" for your target device.
 Also select the examples you like to build:
 
 * "Utilities" => "example1"
 * "Network" => "VPN" => "example2"
 
-Packages are selected when there is a <\*> in front of the name (hit the space bar twice).
+Use the space bar to change package selections:
+
+* <> Package is not build
+* <M> Package is build but not included in the router image
+* <\*> Package is build and included in the router image
+
+#### Start the build
 
 Finally - build the image:
+
 ```
 make
 ```
 
-You can now flash your router using the correct image file inside ./bin/targets/. The images usually contain all build packages already.
-The single \*.ipk packages are located in ./bin/packages, in case you want to install them on other devices.
+This might take one to three hours. The sources are downloaded (into `./dl/`), the toolchain is build, then the packages and finally the router images. Subsequent builds will be much faster.
+
+You can now flash your router using the image file inside `./bin/targets/`.
+The single \*.ipk packages are located in `./bin/packages`, in case you want to install them afterwards on devices that already run OpenWrt.
 
 To install/update a package, transfer the ipk file to your target device to /tmp/ using `scp`.
-The package can then be installed calling e.g. `opkg install myapp-0.1-1.ipk`.
+The package can then be installed calling e.g. `opkg install /tmp/myapp-0.1-1.ipk`.
+
+Notes:
+
+* Use `make -j4` to speed up compilation using multiple CPU cores.
+* `make download` downloads all sources from the Internet into `./dl/`.
+* `make package/example3/{clean,compile} V=s` will only build the package example3
+
+### Install image
+
+If the router does not run OpenWrt, then use the correct openwrt-\*-factory.bin image from `./bin/targets`.
+Sometimes the router does not accept the image. Reasons might be:
+* wrong image file, check the hardware revision of the router vs. the one of the image file (e.g. v1).
+** Devices can have different hardware between hardware revisions, even if the model description stays the same.
+* The device name is too long. Try to rename the image to something shorter (e.g. `image.bin`).
+* The device is vendor locked. The image would need to be signed by the vendor. This is unfortunate. You might need to use a soldering iron to access the console and use tftp to apply the image. Check openwrt.org.
+
+If the router already runs OpenWrt, then use the openwrt-\*-sysupgrade.bin images.
+Transfert the image file to `/tmp/` on the device and use sysupgrade to apply the image:
+
+```
+sysupgrade /tmp/openwrt-*-sysupgrade.bin
+```
+
+Add `-n` to keep configuration files.
 
 ### Install/Test Packages
 
@@ -87,7 +124,7 @@ The application will show a short message before it disconnects from the console
 The duration can be configured in /etc/config/example1.
 
 * example2:
-`example2`on the console will just start that program.
+`example2` on the console will just start that program.
 
 ### Use Remote Source Location
 
@@ -156,7 +193,8 @@ TODO: show what variables are optional
 * PKG_SOURCE_URL_FILE: Name of the source file to be downloaded. If set, will be used instead of PKG_SOURCE to be append to PKG_SOURCE_URL. (Not yet implemented)
 * PKG_MAINTAINER: Name and Email address of the maintainer. See example for prefered format.
 * PKG_LICENSE_FILES: A file in the package that has licensing information.
-* PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`
+* PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`.
+* PKG_HASH: sha256 hash of the source package in `./dl/`.
 
 ### Use Local Source Location
 
@@ -175,7 +213,7 @@ ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 3. In your git repository folder, create new commits and then rebuild your package in the openwrt folder:
 
 ```
-make package/example3/{clean,compile} V=s
+
 ```
 (Note: The package still needs to be selected in the `make menuconfig` menu)
 
@@ -220,3 +258,11 @@ done
 * packages build into the image will be enabled by default (like `/etc/init.d/prpgram enable` has been called).
 ** Usually build an `option enabled 0` in your /etc/config/program configuration file.
 ** Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile
+* Files and directories put into ./files will be included into the router image.
+** For example, ./files/etc/example.txt will appear in the image files system as /etc/example.txt.
+** Usually, use a package to install custom files.
+* The common way to run scripts only once during first boot is to put them into /etc/uci-defaults/
+** The scripts there will be deleted after first execution.
+* If squashfs is used ony the router, then /rom/ will contain the read only base of the file system.
+** the sqashfs file system consists of a compressed base and layers of changes.
+** The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
