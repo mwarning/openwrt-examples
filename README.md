@@ -38,6 +38,9 @@ Official OpenWrt packages can be found here and are a good reference:
 * https://github.com/openwrt/packages
 * https://github.com/openwrt-routing/packages
 
+The official OpenWrt documentation can be found here:
+* https://wiki.openwrt.org/doc/techref/initscripts
+
 ### Build Images and Packages
 
 These are the instructions to build an image for your router including the example applications:
@@ -102,6 +105,7 @@ If the router does not run OpenWrt, then use the correct openwrt-\*-factory.bin 
 Sometimes the router does not accept the image. Reasons might be:
 * wrong image file, check the hardware revision of the router vs. the one of the image file (e.g. v1).
 ** Devices can have different hardware between hardware revisions, even if the model description stays the same.
+** For TP-Link devices, the number after the point are software changes only an can be ignored (e.g. v7.1 vs. v7.2).
 * The device name is too long. Try to rename the image to something shorter (e.g. `image.bin`).
 * The device is vendor locked. The image would need to be signed by the vendor. This is unfortunate. You might need to use a soldering iron to access the console and use tftp to apply the image. Check openwrt.org.
 
