@@ -260,13 +260,13 @@ done
 ## Random notes
 
 * packages build into the image will be enabled by default (like `/etc/init.d/prpgram enable` has been called).
-** Usually build an `option enabled 0` in your /etc/config/program configuration file.
-** Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile
+  * Usually build an `option enabled 0` in your /etc/config/program configuration file.
+  * Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile
 * Files and directories put into ./files will be included into the router image.
-** For example, ./files/etc/example.txt will appear in the image files system as /etc/example.txt.
-** Usually, use a package to install custom files.
+  * For example, ./files/etc/example.txt will appear in the image files system as /etc/example.txt.
+  * Usually, use a package to install custom files.
 * The common way to run scripts only once during first boot is to put them into /etc/uci-defaults/
-** The scripts there will be deleted after first execution.
+  * The scripts there will be deleted after first execution.
 * If squashfs is used ony the router, then /rom/ will contain the read only base of the file system.
-** the sqashfs file system consists of a compressed base and layers of changes.
-** The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
+  * the sqashfs file system consists of a compressed base and layers of changes.
+  * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
