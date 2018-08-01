@@ -12,7 +12,6 @@ PKG_RELEASE:=1
 PKG_LICENSE:=CC0-1.0
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/cmake.mk
 
 define Package/example3
 	SECTION:=utils
