@@ -90,7 +90,7 @@ Finally - build the image:
 make
 ```
 
-This might take one to three hours. The sources are downloaded (into `./dl/`), the toolchain is build, then the packages and finally the router images. Subsequent builds will be much faster.
+This might take one to three hours. The sources are downloaded (into `./dl/`), the toolchain is build, then the packages and finally the router images. Subsequent builds will be much faster. Just select other packages using `make menuconfig` and call `make` again.
 
 You can now flash your router using the image file inside `./bin/targets/`.
 The single \*.ipk packages are located in `./bin/packages`, in case you want to install them afterwards on devices that already run OpenWrt.
@@ -104,10 +104,11 @@ Notes:
 * `make download` downloads all sources from the Internet into `./dl/`.
 * `make package/example3/{clean,compile} V=s` will only build the package example3
 
-### Install image
+### Install Image
 
 If the router does not run OpenWrt, then use the correct openwrt-\*-factory.bin image from `./bin/targets`.
 Sometimes the router does not accept the image. Reasons might be:
+
 * wrong image file, check the hardware revision of the router vs. the one of the image file (e.g. v1).
 ** Devices can have different hardware between hardware revisions, even if the model description stays the same.
 ** For TP-Link devices, the number after the point are software changes only an can be ignored (e.g. v7.1 vs. v7.2).
