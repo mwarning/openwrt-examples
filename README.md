@@ -1,13 +1,14 @@
-### Introduction
+# Introduction
 
 This project contains multiple examples to show how to package an application for [OpenWrt](https://openwrt.org).
-The examples were tested with the LEDE-17.01 release. It is a bit unorderly.
+The examples were tested with the OpenWrt-18.06.0 release.
 
 Feel free to submit new examples and fix errors! :-)
 
 ## Examples
 
-example1:
+### example1
+
 * dummy daemon written in C that forks into background and exits after some (configurable) time.
 * the following files will be installed:
   * /usr/bin/example1
@@ -16,7 +17,8 @@ example1:
 * uses cmake build system
 * source code is part of the package
 
-example2
+### example2
+
 * dummy program written in C that just prints out a message
 * the following files will be installed:
   * /usr/bin/example2
@@ -24,7 +26,8 @@ example2
 * source code is part of the package
 * package let you select features called "foo" and "bar"
 
-example3
+### example3
+
 * like example1, but runs in background by means of [procd](https://wiki.openwrt.org/inbox/procd-init-scripts)
 * this is the preferred way to run a program as a daemon on OpenWrt
 * the following files will be installed:
@@ -41,7 +44,7 @@ Official OpenWrt packages can be found here and are a good reference:
 The official OpenWrt documentation can be found here:
 * https://wiki.openwrt.org/doc/techref/initscripts
 
-### Build Images and Packages
+## Build and Install Images and Packages
 
 These are the instructions to build an image for your router including the example applications:
 
@@ -63,7 +66,7 @@ make menuconfig
 
 Now the build menu opens.
 
-#### Build menu
+### Build menu
 
 The build menu let you select the correct "Target System" and "Target Profile" for your target device.
 Also select the examples you like to build:
@@ -77,7 +80,7 @@ Use the space bar to change package selections:
 * <M> Package is build but not included in the router image
 * <\*> Package is build and included in the router image
 
-#### Start the build
+### Start the build
 
 Finally - build the image:
 
@@ -118,7 +121,7 @@ sysupgrade /tmp/openwrt-*-sysupgrade.bin
 
 Add `-n` to keep configuration files.
 
-### Install/Test Packages
+## Install/Test Packages
 
 To test your program you need to login in to your router (telnet or ssh).
 
@@ -130,7 +133,7 @@ The duration can be configured in /etc/config/example1.
 * example2:
 `example2` on the console will just start that program.
 
-### Use Remote Source Location
+## Use Remote Source Location
 
 This is the most common package configuration.
 The source code is downloaded as a compressed file from somewhere on the Internet.
@@ -200,7 +203,7 @@ TODO: show what variables are optional
 * PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`.
 * PKG_HASH: sha256 hash of the source package in `./dl/`.
 
-### Use Local Source Location
+## Use Local Source Location
 
 For development purposes, it is often useful to specify a local (git) repository on the same computer to apply new commits and build new images/packages without much hassle.
 
@@ -225,7 +228,7 @@ ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 
 Be aware that changes will only be included in the binary when they are part of a commit in the git repository!
 
-### Build package for all architectures
+## Build package for all architectures
 
 Sometimes it is necessary to build packages for all architectures without building the images for all targets.
 This script build the package once for each architecture:
