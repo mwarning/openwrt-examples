@@ -220,7 +220,7 @@ ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 3. In your git repository folder, create new commits and then rebuild your package in the openwrt folder:
 
 ```
-
+git commit -m "some new change to test"
 ```
 (Note: The package still needs to be selected in the `make menuconfig` menu)
 
@@ -262,9 +262,9 @@ done
 
 ## Random notes
 
-* packages build into the image will be enabled by default (like `/etc/init.d/prpgram enable` has been called).
-  * Usually build an `option enabled 0` in your /etc/config/program configuration file.
-  * Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile
+* packages build into the image will be enabled by default (like `/etc/init.d/program enable` has been called. Creates a link in `/etc/rc.d/`).
+  * You can build an `option enabled 0` in your /etc/config/program configuration file, but it might create confusion 
+  * Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile. This will disable the init script from being called. 
 * Files and directories put into ./files will be included into the router image.
   * For example, ./files/etc/example.txt will appear in the image files system as /etc/example.txt.
   * Usually, use a package to install custom files.
