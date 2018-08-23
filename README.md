@@ -273,6 +273,7 @@ done
   * Usually, use a package to install custom files.
 * The common way to run scripts only once during first boot is to put them into /etc/uci-defaults/
   * The scripts there will be deleted after first execution.
-* If squashfs is used ony the router, then /rom/ will contain the read only base of the file system.
+* If the squashfs file system is used on the router, then /rom/ will contain the read only base of the file system.
   * the sqashfs file system consists of a compressed base and layers of changes.
   * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
+* /etc/config/system and /etc/config/network can be recreated calling `/bin/config_generate` after being deleted.
