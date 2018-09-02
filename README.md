@@ -196,7 +196,7 @@ TODO: show what variables are optional
 * PKG_NAME: Package name. Use lower case letters.
 * PKG_LICENSE: Package license. See the [SPDX license list](https://spdx.org/licenses/) for valid values.
 * PKG_VERSION: The same version as program to be packaged. If you do not know how to version projects, have a look at [semantic versioning](https://semver.org/).
-* PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. reset to 1 if PKG_VERSION changes.
+* PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. Reset to 1 if PKG_VERSION changes.
 * PKG_REV: Branch name or git commit id (sha1 hash).
 * PKG_SOURCE_URL: Path to a download directory or source control repository (e.g. git, svn, ..)
 * PKG_SOURCE: Name of the source file to be downloaded. Will be appended to PKG_SOURCE_URL. The file be cached in dl/.
@@ -277,3 +277,4 @@ done
   * the sqashfs file system consists of a compressed base and layers of changes.
   * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
 * /etc/config/system and /etc/config/network can be recreated calling `/bin/config_generate` after being deleted.
+* If the package contains `files/etc/config/myprogram`, `files/init.d/myprogram`, then `$(CP) ./files/* $(1)/` in the package Makefiles install section is a nice shortcut to place all files in the image root file system.
