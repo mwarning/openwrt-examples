@@ -276,5 +276,5 @@ done
 * If the squashfs file system is used on the router, then /rom/ will contain the read only base of the file system.
   * the sqashfs file system consists of a compressed base and layers of changes.
   * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
-* /etc/config/system and /etc/config/network can be recreated calling `/bin/config_generate` after being deleted.
+* `/etc/config/system` and `/etc/config/network` can be recreated calling `/bin/config_generate` after being deleted. For `/etc/config/wireless` use `wifi config` to restore.
 * If the package contains `files/etc/config/myprogram`, `files/init.d/myprogram`, then `$(CP) ./files/* $(1)/` in the package Makefiles install section is a nice shortcut to place all files in the image root file system.
