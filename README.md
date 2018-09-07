@@ -78,9 +78,9 @@ Also select the examples you like to build:
 
 Use the space bar to change package selections:
 
-* <> Package is not build
-* <M> Package is build but not included in the router image
-* <\*> Package is build and included in the router image
+* `< >` Package is not build
+* `<M>` Package is build but not included in the router image
+* `<*>` Package is build and included in the router image
 
 ### Start the build
 
