@@ -263,6 +263,10 @@ This script build the package once for each architecture:
 done
 ```
 
+## Using the SDK
+
+See [here](openwrt-sdk.md).
+
 ## Random notes
 
 * packages build into the image will be enabled by default (like `/etc/init.d/program enable` has been called. Creates a link in `/etc/rc.d/`).
