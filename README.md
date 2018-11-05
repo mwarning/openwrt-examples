@@ -43,7 +43,7 @@ Official OpenWrt packages can be found here and are a good reference:
 * https://github.com/openwrt/packages
 * https://github.com/openwrt-routing/packages
 
-The official OpenWrt documentation can be found here:
+Init script documentation can be found here:
 * https://wiki.openwrt.org/doc/techref/initscripts
 
 ## Build and Install Images and Packages
