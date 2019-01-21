@@ -111,12 +111,12 @@ Sometimes the router does not accept the image. Reasons might be:
 
 * wrong image file, check the hardware revision of the router vs. the one of the image file (e.g. v1).
 ** Devices can have different hardware between hardware revisions, even if the model description stays the same.
-** For TP-Link devices, the number after the point are software changes only an can be ignored (e.g. v7.1 vs. v7.2).
+** For TP-Link devices, the number after the point are software changes only and can be ignored (e.g. v7.1 vs. v7.2).
 * The device name is too long. Try to rename the image to something shorter (e.g. `image.bin`).
 * The device is vendor locked. The image would need to be signed by the vendor. This is unfortunate. You might need to use a soldering iron to access the console and use tftp to apply the image. Check openwrt.org.
 
 If the router already runs OpenWrt, then use the openwrt-\*-sysupgrade.bin images.
-Transfert the image file to `/tmp/` on the device and use sysupgrade to apply the image:
+Transfer the image file to `/tmp/` on the device (usually via `scp <image> root@192.168.1.1:/tmp/`) and use sysupgrade to apply the image:
 
 ```
 sysupgrade /tmp/openwrt-*-sysupgrade.bin
