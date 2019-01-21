@@ -34,13 +34,10 @@ define Build/Prepare
 endef
 
 define Package/example1/install
+	$(CP) ./files/* $(1)/
+
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/example1 $(1)/usr/bin/
-
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) files/example1.init $(1)/etc/init.d/example1
-	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) files/example1.config $(1)/etc/config/example1
 endef
 
 $(eval $(call BuildPackage,example1))

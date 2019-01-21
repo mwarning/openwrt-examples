@@ -74,6 +74,7 @@ The build menu let you select the correct "Target System" and "Target Profile" f
 Also select the examples you like to build:
 
 * "Utilities" => "example1"
+* "Utilities" => "example3"
 * "Network" => "VPN" => "example2"
 
 Use the space bar to change package selections:
