@@ -274,12 +274,12 @@ See [here](openwrt-sdk.md).
   * You can build an `option enabled 0` in your /etc/config/program configuration file, but it might create confusion 
   * Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile. This will disable the init script from being called. 
 * Files and directories put into ./files will be included into the router image.
-  * For example, ./files/etc/example.txt will appear in the image files system as /etc/example.txt.
-  * Usually, use a package to install custom files.
-* The common way to run scripts only once during first boot is to put them into /etc/uci-defaults/
+  * For example, ./files/etc/example.txt will appear in the image files system as `/etc/example.txt`.
+  * existing files will be overwritten,
+* The common way to run scripts only once during first boot is to put them into `/etc/uci-defaults/`
   * The scripts there will be deleted after first execution.
-* If the squashfs file system is used on the router, then /rom/ will contain the read only base of the file system.
-  * the sqashfs file system consists of a compressed base and layers of changes.
+* If the squashfs file system is used on the router, then `/rom/` will contain the read only base of the file system.
+  * The sqashfs file system consists of a compressed base and layers of changes.
   * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
-* `/etc/config/system` and `/etc/config/network` can be recreated calling `/bin/config_generate` after being deleted. For `/etc/config/wireless` use `wifi config` to restore.
-* If the package contains `files/etc/config/myprogram`, `files/init.d/myprogram`, then `$(CP) ./files/* $(1)/` in the package Makefiles install section is a nice shortcut to place all files in the image root file system.
+* `/etc/config/system` and `/etc/config/network` can be recreated calling `/bin/config_generate` after being deleted. For restoring a deleted `/etc/config/wireless`, use `wifi config` command to recreate it.
+* If the package contains `files/etc/config/myprogram`, `files/init.d/myprogram`, then `$(CP) ./files/* $(1)/` in the package Makefiles install section is a nice shortcut to place all files in the image root file system.This is the preferred way.
