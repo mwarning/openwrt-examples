@@ -29,7 +29,7 @@ Feel free to submit new examples and fix errors! :-)
 ### example3
 
 * like example1, but runs in background by means of [procd](https://wiki.openwrt.org/inbox/procd-init-scripts)
-* this is the preferred way to run a program as a daemon on OpenWrt
+  * this is the preferred way to run a program as a daemon on OpenWrt
 * the following files will be installed:
   * /usr/bin/example3
 * make build system
