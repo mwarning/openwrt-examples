@@ -123,7 +123,7 @@ Transfer the image file to `/tmp/` on the device (usually via `scp <image> root@
 sysupgrade /tmp/openwrt-*-sysupgrade.bin
 ```
 
-Add `-n` to keep configuration files.
+Changes in `/etc/config` and files listed `/etc/sysupgrade.conf` will be preserved. But installed packaged are lost and need to be installed again. `sysupgrade -n` will discard all changes.
 
 ## Install/Test Packages
 
