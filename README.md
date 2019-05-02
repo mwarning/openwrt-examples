@@ -103,7 +103,7 @@ Notes:
 
 * Use `make -j4` to speed up compilation using multiple CPU cores.
 * `make download` downloads all sources from the Internet into `./dl/`.
-* `make package/example3/{clean,compile} V=s` will only build the package example3
+* `make package/example3/{clean,compile} V=s` will only build the package example3.
 
 ### Install Image
 
@@ -196,6 +196,7 @@ TODO: show what variables are optional
 
 * PKG_NAME: Package name. Use lower case letters.
 * PKG_LICENSE: Package license. See the [SPDX license list](https://spdx.org/licenses/) for valid values.
+* PKG_LICENSE_FILES: Path to the license file in the source code.
 * PKG_VERSION: The same version as program to be packaged. If you do not know how to version projects, have a look at [semantic versioning](https://semver.org/).
 * PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. Reset to 1 if PKG_VERSION changes.
 * PKG_REV: Branch name or git commit id (sha1 hash).
@@ -221,14 +222,20 @@ ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
 "Advanced configuration options (for developers)" => "Enable package source tree override"
 ```
 
-3. In your git repository folder, create new commits and then rebuild your package in the openwrt folder:
+3. In your git repository folder, create new commits:
 
 ```
 git commit -m "some new change to test"
 ```
 (Note: The package still needs to be selected in the `make menuconfig` menu)
 
-4. Your package should now appear in bin/packages/.
+4. Rebuild your package in the openwrt folder
+
+```
+make package/example3/{clean,compile}
+```
+
+5. Your package should now appear in bin/packages/.
 
 Be aware that changes will only be included in the binary when they are part of a commit in the git repository!
 
@@ -271,8 +278,8 @@ See [here](openwrt-sdk.md).
 ## Random notes
 
 * packages build into the image will be enabled by default (like `/etc/init.d/program enable` has been called. Creates a link in `/etc/rc.d/`).
-  * You can build an `option enabled 0` in your /etc/config/program configuration file, but it might create confusion 
-  * Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile. This will disable the init script from being called. 
+  * You can build an `option enabled 0` in your /etc/config/program configuration file, but it might create confusion when `/etc/init.d/program enable|disable` is used.
+  * Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile. This will disable the init script from being enabled.
 * Files and directories put into ./files will be included into the router image.
   * For example, ./files/etc/example.txt will appear in the image files system as `/etc/example.txt`.
   * existing files will be overwritten,
