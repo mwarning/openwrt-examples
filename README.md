@@ -208,6 +208,29 @@ TODO: show what variables are optional
 * PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`.
 * PKG_HASH: sha256 hash of the source package in `./dl/`.
 
+### Specific Build Variables
+
+For projects build with autotools:
+
+```
+CONFIGURE_ARGS += --disable-zip
+```
+
+This results in a configure call like `./configure --disable-zip`.
+
+```
+CONFIGURE_VARS += ac_cv=yes
+```
+This results in a configure call like `ac_cv=yes ./configure`.
+
+`HOST_CONFIGURE_ARGS`: Similar to `CONFIGURE_ARGS`, but used when build for the host system architecture. This is needed for building the build tools.
+
+## Path Variables
+
+`$(STAGING_DIR)` refers to the build root. E.g. use `$(STAGING_DIR)/usr/lib` to reference the `usr/lib/` folder that contains the libraries build for the target architecture.
+
+`$(PKG_BUILD_DIR)` refers to the extraced source code package or repository checkout.
+
 ## Use Local Source Location
 
 For development purposes, it is often useful to specify a local (git) repository on the same computer to apply new commits and build new images/packages without much hassle.
