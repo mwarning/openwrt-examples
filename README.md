@@ -237,7 +237,7 @@ For development purposes, it is often useful to specify a local (git) repository
 
 1. Create a soft link called git-src in the same folder of your package Makefile. I needs to point to the .git folder of your local repository checkout.
 ```
-ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
+ln -s /my/own/project/repo/example3/.git feeds/packages/example3/git-src
 ```
 
 2. Call `make menuconfig` in your openwrt folder and enable this feature:
