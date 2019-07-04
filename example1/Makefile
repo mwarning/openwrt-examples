@@ -8,7 +8,7 @@ PKG_NAME:=example1
 PKG_VERSION:=0.1
 PKG_RELEASE:=1
 
-# see https://spdx.org/licenses/
+PKG_MAINTAINER:=John Doe <john.doe@example.com>
 PKG_LICENSE:=CC0-1.0
 
 include $(INCLUDE_DIR)/package.mk
