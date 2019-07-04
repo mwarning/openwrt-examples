@@ -23,7 +23,6 @@ define Package/example2
 	TITLE:=Some other dummy application.
 	# Feature FOO also needs libsodium:
 	DEPENDS:=+librt +CONFIG_EXAMPLE2_ENABLE_FOO:libsodium
-	MAINTAINER:= Foo Bar <foo@example.com>
 	URL:=https://www.example.com
 	SUBMENU:=VPN
 endef

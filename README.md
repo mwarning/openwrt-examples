@@ -237,7 +237,7 @@ For development purposes, it is often useful to specify a local (git) repository
 
 1. Create a soft link called git-src in the same folder of your package Makefile. I needs to point to the .git folder of your local repository checkout.
 ```
-ln -s /my/own/project/repo/example3/.git openwrt/package/example3/git-src
+ln -s /my/own/project/repo/example3/.git feeds/packages/example3/git-src
 ```
 
 2. Call `make menuconfig` in your openwrt folder and enable this feature:
@@ -312,4 +312,4 @@ See [here](openwrt-sdk.md).
   * The sqashfs file system consists of a compressed base and layers of changes.
   * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
 * `/etc/config/system` and `/etc/config/network` can be recreated calling `/bin/config_generate` after being deleted. For restoring a deleted `/etc/config/wireless`, use `wifi config` command to recreate it.
-* If the package contains `files/etc/config/myprogram`, `files/init.d/myprogram`, then `$(CP) ./files/* $(1)/` in the package Makefiles install section is a nice shortcut to place all files in the image root file system.This is the preferred way.
+* For installing files, `$(CP) ./files/* $(1)/` in the package Makefiles install section is a nice shortcut to install a bunch of files into the image root file system. Otherwise multiple lines would need to be used. This is the preferred way.

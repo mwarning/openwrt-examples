@@ -19,7 +19,6 @@ define Package/example3
 	#DEFAULT:=y
 	CATEGORY:=Utilities
 	TITLE:=Some different dummy application.
-	MAINTAINER:= Foo Bar <foo@example.com>
 	URL:=https://www.example.com
 endef
 
