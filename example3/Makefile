@@ -15,7 +15,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/example3
 	SECTION:=utils
-	# Should this package be selected by default?
+	# Select package by default
 	#DEFAULT:=y
 	CATEGORY:=Utilities
 	TITLE:=Some different dummy application.

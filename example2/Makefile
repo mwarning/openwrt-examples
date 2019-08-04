@@ -11,13 +11,11 @@ PKG_RELEASE:=1
 PKG_MAINTAINER:=John Doe <john.doe@example.com>
 PKG_LICENSE:=CC0-1.0
 
-PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
-
 include $(INCLUDE_DIR)/package.mk
 
 define Package/example2
 	SECTION:=net
-	# Should this package be selected by default?
+	# Select package by default
 	#DEFAULT:=y
 	CATEGORY:=Network
 	TITLE:=Some other dummy application.
