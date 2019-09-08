@@ -204,7 +204,6 @@ TODO: show what variables are optional
 * PKG_SOURCE: Name of the source file to be downloaded. Will be appended to PKG_SOURCE_URL. The file be cached in dl/.
 * PKG_SOURCE_URL_FILE: Name of the source file to be downloaded. If set, will be used instead of PKG_SOURCE to be append to PKG_SOURCE_URL. (Not yet implemented)
 * PKG_MAINTAINER: Name and Email address of the maintainer. See example for prefered format.
-* PKG_LICENSE_FILES: A file in the package that has licensing information.
 * PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`.
 * PKG_HASH: sha256 hash of the source package in `./dl/`.
 
