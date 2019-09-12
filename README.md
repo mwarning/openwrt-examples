@@ -102,7 +102,7 @@ The package can then be installed calling e.g. `opkg install /tmp/myapp-0.1-1.ip
 Notes:
 
 * Use `make -j4` to speed up compilation using multiple CPU cores.
-* `make download` downloads all sources from the Internet into `./dl/`.
+* `make download` downloads all sources from the Internet into `./dl/`. Useful for offline compilation.
 * `make package/example3/{clean,compile} V=s` will only build the package example3.
 
 ### Install Image
