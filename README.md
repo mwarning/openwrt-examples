@@ -294,6 +294,48 @@ This script build the package once for each architecture:
 done
 ```
 
+## Inspect IPK Packages
+
+Sometimes it is useful to see inside an `*.ipk` package. Let's try to inspect the contents of `htop_2.2.0-2_mips_24kc`:
+
+```
+$ tar -xvf htop_2.2.0-2_mips_24kc.ipk
+./debian-binary
+./data.tar.gz
+./control.tar.g
+```
+
+```
+$ cat debian-binary
+2.0
+```
+Contains the version of the packaging standard. You see the Debian heritage. :P
+
+```
+$ tar -xvf control.tar.gz
+./
+./control
+./postinst
+./prerm
+```
+
+These files are all plain text files.
+
+* `control` contains the package name, version, dependencies names, maintainer information and other information.
+* `postinst` is a shell script. It is executed after a packages is installed.
+* `prerm` is also a shell script. It is executed before an installed package is removed.
+
+```
+$ tar -xvf data.tar.gz
+./
+./usr/
+./usr/bin/
+./usr/bin/htop
+```
+
+Notes:
+ * the `$` signifies the command prompt of a shell/terminal.
+
 ## Using the SDK
 
 See [here](openwrt-sdk.md).
