@@ -4,11 +4,6 @@ START=95
 PROG=/usr/bin/example1
 
 
-section_enabled() {
-	config_get_bool enabled "$1" 'enabled' 0
-	[ $enabled -gt 0 ]
-}
-
 start_instance() {
 	local cfg="$1"
 	local duration
