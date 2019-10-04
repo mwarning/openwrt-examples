@@ -15,7 +15,7 @@ start_instance() {
 	[ $enabled -gt 0 ] || return 1
 
 	# Usually, procd should be used for services running in the background. See example3.
-	eval service_start "'$PROG' $duration"
+	service_start $PROG $duration
 }
 
 stop_instance() {
