@@ -101,7 +101,7 @@ The package can then be installed calling e.g. `opkg install /tmp/myapp-0.1-1.ip
 
 Notes:
 
-* Use `make -j4` to speed up compilation using multiple CPU cores.
+* Use `` make -j `nproc` `` to speed up compilation using multiple CPU cores.
 * `make download` downloads all sources from the Internet into `./dl/`. Useful for offline compilation.
 * `make package/example3/{clean,compile} V=s` will only build the package example3.
 
@@ -270,7 +270,7 @@ This script build the package once for each architecture:
 #!/bin/sh
 
 # dumpinfo.pl is used to get all targets configurations:
-# https://git.openwrt.org/?p=buildbot.git;a=blob;f=phase1/dumpinfo.pl
+# https://git.openwrt.org/?p=buildbot.git;a=blob;f=scripts/dumpinfo.pl
 
 ./dumpinfo.pl architectures | while read pkgarch target1 rest; do
   echo "CONFIG_TARGET_${target1%/*}=y" > .config
@@ -281,8 +281,8 @@ This script build the package once for each architecture:
   echo "pkgarch: $pkgarch, target1: $target1"
 
   make defconfig
-  make -j4 tools/install
-  make -j4 toolchain/install
+  make -j `nproc` tools/install
+  make -j `nproc` toolchain/install
 
   # Build package
   make package/example1/{clean,compile}
