@@ -270,7 +270,7 @@ This script build the package once for each architecture:
 #!/bin/sh
 
 # dumpinfo.pl is used to get all targets configurations:
-# https://git.openwrt.org/?p=buildbot.git;a=blob;f=phase1/dumpinfo.pl
+# https://git.openwrt.org/?p=buildbot.git;a=blob;f=scripts/dumpinfo.pl
 
 ./dumpinfo.pl architectures | while read pkgarch target1 rest; do
   echo "CONFIG_TARGET_${target1%/*}=y" > .config
