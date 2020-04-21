@@ -339,6 +339,17 @@ Notes:
 
 See [here](openwrt-sdk.md).
 
+## Preserve Configuration Files On Update
+
+Files in `/etc/config` are preserved by default when a package is updated, others are not. To extend that to files in other places, they must be listed in the package Makefile:
+
+```
+define Package/example1/conffiles
+/etc/example1.conf
+endef
+```
+(Note that there must no be a whitespace in front of the file path)
+
 ## Random notes
 
 * packages build into the image will be enabled by default (like `/etc/init.d/program enable` has been called. Creates a link in `/etc/rc.d/`).
