@@ -295,7 +295,7 @@ done
 
 ## Inspect IPK Packages
 
-Sometimes it is useful to see inside an `*.ipk` package. Let's try to inspect the contents of `htop_2.2.0-2_mips_24kc`:
+Sometimes it is useful to look inside an `*.ipk` package. Let's try to inspect the contents of `htop_2.2.0-2_mips_24kc.ipk`:
 
 ```
 $ tar -xvf htop_2.2.0-2_mips_24kc.ipk
@@ -353,7 +353,7 @@ endef
 ## Random notes
 
 * packages build into the image will be enabled by default (like `/etc/init.d/program enable` has been called. Creates a link in `/etc/rc.d/`).
-  * You can add a setting like `option enabled 0` in your /etc/config/program configuration file, but it might create confusion when `/etc/init.d/program enable|disable` is used.
+  * You can add a setting like `option enabled 0` in your /etc/config/program configuration file, but it might create confusion when `/etc/init.d/program [enable|disable]` is used.
   * Or place `[ -f /etc/openwrt_release ] || exit 0` as your second line in the package Makefile. This will disable the init script from being enabled.
 * Files and directories put into ./files will be included into the router image.
   * For example, ./files/etc/example.txt will appear in the image files system as `/etc/example.txt`.
