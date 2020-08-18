@@ -371,3 +371,5 @@ endef
     option ifname 'eth0'
     option proto 'none'
 ```
+* "*** Warning - bad CRC, using default environment" from the bootloader often only means that there is no configuration stored and the defaults are used. Save the settings to get rid of the message.
+* The DOWNLOAD_MIRROR environment variable can contain `;` separated paths/locations source package files to fetch for `dl/`. The CONFIG_LOCALMIRROR variable in `make menuconfig` serves the same purpose.
