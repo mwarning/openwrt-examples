@@ -360,9 +360,9 @@ endef
   * existing files will be overwritten,
 * The common way to run scripts only once during first boot is to put them into `/etc/uci-defaults/`
   * The scripts there will be deleted after first execution.
-* If the squashfs file system is used on the router, then `/rom/` will contain the read only base of the file system.
+* If the squashfs file system is used on the router, then the read only base of the file system is accesssible via `root`.
   * The sqashfs file system consists of a compressed base and layers of changes.
-  * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed.
+  * The `firstboot` command can throw away all layers/changes and the device will be as it was just flashed. Do not forget to reboot.
 * `/etc/config/system` and `/etc/config/network` can be recreated calling `/bin/config_generate` after being deleted. For restoring a deleted `/etc/config/wireless`, use `wifi config` command to recreate it.
 * For installing files, `$(CP) ./files/* $(1)/` in the package Makefiles install section is a nice shortcut to install a bunch of files into the image root file system. Otherwise multiple lines would need to be used. This is the preferred way.
 * if no hotplug event is received in `/etc/hotplug.d/iface/` (e.g `eth0`), then make a dummy section in `/etc/config/network` to trigger hotplug events on that interface:  
