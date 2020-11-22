@@ -104,6 +104,7 @@ Notes:
 * Use `` make -j `nproc` `` to speed up compilation using multiple CPU cores.
 * `make download` downloads all sources from the Internet into `./dl/`. Useful for offline compilation.
 * `make package/example3/{clean,compile} V=s` will only build the package example3.
+* Add `V=s` to any make calls for verbose/debug output (e.g. `make V=s`). `V=sc` for even higher verbosity.
 
 ### Install Image
 
