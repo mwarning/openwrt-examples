@@ -340,6 +340,10 @@ Notes:
 
 See [here](openwrt-sdk.md).
 
+## Using the Image Builder
+
+See [here](https://openwrt.org/docs/guide-user/additional-software/imagebuilder)
+
 ## Preserve Configuration Files On Update
 
 Files in `/etc/config` are preserved by default when a package is updated, others are not. To extend that to files in other places, they must be listed in the package Makefile:
