@@ -294,6 +294,16 @@ This script build the package once for each architecture:
 done
 ```
 
+## "Dirty patches detected, please refresh and review the diff"
+
+When you update a package, but do not update the patches (e.g. `openwrt/feeds/packages/net/netcat/patches/`), then the patches there might still apply, but you might encounter warnings about offsets/hunks. This is not a big problem, but the OpenWrt pipeline checks might fail because of `dirty patches` and you need to refresh the patches:
+
+```
+make package/netcat/{clean,refresh}
+```
+
+Commit the changed patches and you should be fine.
+
 ## Inspect IPK Packages
 
 Sometimes it is useful to look inside an `*.ipk` package. Let's try to inspect the contents of `htop_2.2.0-2_mips_24kc.ipk`:
