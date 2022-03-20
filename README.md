@@ -1,7 +1,7 @@
 # Introduction
 
 This project contains multiple examples to show how to package an application for [OpenWrt](https://openwrt.org).
-The examples were tested with the OpenWrt 21.02.2 release.
+The examples were tested with the OpenWrt 21.02.2 release. Keep in mind that this is more of a personal collection of notes rather than a documentation.
 
 Feel free to submit new examples and fix errors! :-)
 
