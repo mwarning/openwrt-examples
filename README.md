@@ -206,7 +206,8 @@ TODO: show what variables are optional
 * PKG_SOURCE_URL_FILE: Name of the source file to be downloaded. If set, will be used instead of PKG_SOURCE to be append to PKG_SOURCE_URL. (Not yet implemented)
 * PKG_MAINTAINER: Name and Email address of the maintainer. See example for prefered format.
 * PKG_BUILD_DIR: Set explicit build directory, e.g. if the extracted directory does not match the PKG_NAME PKG_VERSION scheme: `PKG_BUILD_DIR:=$(BUILD_DIR)/FooBar-$(PKG_VERSION)`.
-* PKG_HASH: sha256 hash of the source package in `./dl/`.
+* PKG_HASH: sha256 hash of the source package that ends of in `./dl/`.
+* PKG_MIRROR_HASH: sha256 hash of the source package to download from an OpenWrt mirror. Used when PKG_HASH is not used.
 
 ### Specific Build Variables
 
@@ -364,6 +365,28 @@ define Package/example1/conffiles
 endef
 ```
 (Note that there must no be a whitespace in front of the file path)
+
+## SSH Access
+
+With older OpenWrt releases, the following error can be observed:
+
+```
+$ssh root@192.168.1.1
+Warning: Permanently added '192.168.1.1' (ED25519) to the list of known hosts.
+ash: /usr/libexec/sftp-server: not found
+scp: Connection closed
+```
+
+This will work:
+
+```
+ssh -O -o HostKeyAlgorithms=+ssh-rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@192.168.1.1
+```
+
+* `-O`: is the actual solution here.
+* `-o HostKeyAlgorithms=+ssh-rsa`: Allow the old RSA cipher.
+* `-o UserKnownHostsFile=/dev/null`: do not store the host key.
+* `-o StrictHostKeyChecking=no`: Ignore the stored key in `~/.ssh/known_hosts` if the remote host key has changed.
 
 ## Random notes
 
