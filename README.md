@@ -383,10 +383,46 @@ This will work:
 ssh -O -o HostKeyAlgorithms=+ssh-rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@192.168.1.1
 ```
 
-* `-O`: is the actual solution here.
+* `-O`: is the actual solution here (the rest is still useful).
 * `-o HostKeyAlgorithms=+ssh-rsa`: Allow the old RSA cipher.
 * `-o UserKnownHostsFile=/dev/null`: do not store the host key.
 * `-o StrictHostKeyChecking=no`: Ignore the stored key in `~/.ssh/known_hosts` if the remote host key has changed.
+
+
+## Automatic And Generic Wifi Setup
+
+When building a new image, it can be useful to configure the network to open a WiFi network on startup.
+Or you use a device specific wifi configuration there. But a generic script that changes the WiFi configration can save a step. For this, create a file `files/etc/uci-defaults/50_wifi_setup.sh` in your OpenWrt source folder (create missing folders yourself).
+
+```
+# Wifi password (at least 8 characters)
+key="12345678"
+# WiFi name
+ssid="OpenWrt"
+
+wifi_enable_device() {
+  local cfg="$1"
+
+  uci set wireless.$cfg.disabled='0'
+}
+
+wifi_setup_interface() {
+  local cfg="$1"
+
+  uci set wireless.$cfg.ssid="$ssid"
+  if [ -n "$key" -a "${#key}" -ge 8 ]; then
+    uci set wireless.$cfg.key="$key"
+    uci set wireless.$cfg.encryption="psk2"
+  else
+    uci set wireless.$cfg.encryption="none"
+  fi
+}
+
+config_load wireless
+config_foreach wifi_enable_device wifi-device
+config_foreach wifi_setup_interface wifi-iface
+uci commit wireless
+```
 
 ## Random notes
 
