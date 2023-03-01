@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=example3
 PKG_VERSION:=1.0.0
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=1
 
 PKG_MAINTAINER:=John Doe <john.doe@example.com>
 PKG_LICENSE:=CC0-1.0

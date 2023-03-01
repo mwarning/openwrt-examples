@@ -149,7 +149,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=netdata
 PKG_VERSION:=1.4.0
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=1
 PKG_MAINTAINER:=Bob Smith <bob.smith@example.net>
 PKG_LICENSE:=GPL-3.0
 PKG_LICENSE_FILES:=COPYING
@@ -168,7 +168,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=stoken
 PKG_VERSION:=0.8
 PKG_REV:=c4d79ffbf5053e44be4b64da22b1b7fb6a51daf2
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/cernekee/stoken.git
@@ -183,7 +183,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=stoken
 PKG_VERSION:=0.8
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://codeload.github.com/cernekee/stoken/tar.gz/v$(PKG_VERSION)?
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -199,7 +199,7 @@ TODO: show what variables are optional
 * PKG_LICENSE: Package license. See the [SPDX license list](https://spdx.org/licenses/) for valid values.
 * PKG_LICENSE_FILES: Path to the license file in the source code.
 * PKG_VERSION: The same version as program to be packaged. If you do not know how to version projects, have a look at [semantic versioning](https://semver.org/).
-* PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. Reset to 1 if PKG_VERSION changes. Nowadays you can just use `$(AUTORELEASE)`, which will the task for you.
+* PKG_RELEASE: Revision of the package. Start at 1 and increase when the package changes. Reset to 1 if PKG_VERSION changes. `$(AUTORELEASE)` was used for a time, but is deprecated now.
 * PKG_REV: Branch name or git commit id (sha1 hash).
 * PKG_SOURCE_URL: Path to a download directory or source control repository (e.g. git, svn, ..)
 * PKG_SOURCE: Name of the source file to be downloaded. Will be appended to PKG_SOURCE_URL. The file be cached in dl/.
