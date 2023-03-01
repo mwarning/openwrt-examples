@@ -392,7 +392,7 @@ ssh -O -o HostKeyAlgorithms=+ssh-rsa -o UserKnownHostsFile=/dev/null -o StrictHo
 ## Automatic And Generic Wifi Setup
 
 When building a new image, it can be useful to configure the network to open a WiFi network on startup.
-Or you use a device specific wifi configuration there. But a generic script that changes the WiFi configration can save a step. For this, create a file `files/etc/uci-defaults/50_wifi_setup.sh` in your OpenWrt source folder (create missing folders yourself).
+Or you use a device specific wifi configuration there. But a generic script that changes the WiFi configration can save a step. For this, create a file `files/etc/uci-defaults/50_wifi_setup.sh` in your OpenWrt source folder (create missing folders).
 
 ```
 # Wifi password (at least 8 characters)
@@ -445,5 +445,6 @@ uci commit wireless
     option ifname 'eth0'
     option proto 'none'
 ```
-* "*** Warning - bad CRC, using default environment" from the bootloader often only means that there is no configuration stored and the defaults are used. Save the settings to get rid of the message.
+* `*** Warning - bad CRC, using default environment` from the bootloader often only means that there is no configuration stored and the defaults are used. Save the settings to get rid of the message.
 * The DOWNLOAD_MIRROR environment variable can contain `;` separated paths/locations source package files to fetch for `dl/`. The CONFIG_LOCALMIRROR variable in `make menuconfig` serves the same purpose.
+* `WARNING: Not overriding core package 'foobar'; use -f to force`, delete the `tmp` folder and do `./scripts/feeds install -a` again.
