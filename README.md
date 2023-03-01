@@ -366,12 +366,12 @@ endef
 ```
 (Note that there must no be a whitespace in front of the file path)
 
-## SSH Access
+## SCP Access
 
 With older OpenWrt releases, the following error can be observed:
 
 ```
-$ssh root@192.168.1.1
+$scp file root@192.168.1.1:/tmp/
 Warning: Permanently added '192.168.1.1' (ED25519) to the list of known hosts.
 ash: /usr/libexec/sftp-server: not found
 scp: Connection closed
@@ -380,7 +380,7 @@ scp: Connection closed
 This will work:
 
 ```
-ssh -O -o HostKeyAlgorithms=+ssh-rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@192.168.1.1
+scp -O -o HostKeyAlgorithms=+ssh-rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no file root@192.168.1.1:/tmp/
 ```
 
 * `-O`: is the actual solution here (the rest is still useful).
