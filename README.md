@@ -68,7 +68,9 @@ make menuconfig
 
 Now the build menu opens.
 
-### Build menu
+* `make kernel_menuconfig` will open a kernel specific menu
+
+### Build Menu
 
 The build menu let you select the correct "Target System" and "Target Profile" for your target device.
 Also select the examples you like to build:
