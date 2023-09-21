@@ -274,19 +274,24 @@ This script build the package once for each architecture:
 #!/bin/sh
 
 # dumpinfo.pl is used to get all targets configurations:
-# https://git.openwrt.org/?p=buildbot.git;a=blob;f=scripts/dumpinfo.pl
+# https://git.openwrt.org/?p=buildbot.git;a=blob_plain;f=scripts/dumpinfo.pl;h=aa97f8d60379076a41b968402e9337cea824ece5
 
 ./dumpinfo.pl architectures | while read pkgarch target1 rest; do
-  echo "CONFIG_TARGET_${target1%/*}=y" > .config
-  echo "CONFIG_TARGET_${target1%/*}_${target1#*/}=y" >> .config
+  target="${target1%/*}"
+  subtarget="${target1#*/}"
+
+  # debug output
+  echo "pkgarch: ${pkgarch}, target: ${target}, subtarget: ${subtarget}"
+
+  echo "CONFIG_TARGET_${target}=y" > .config
+  echo "CONFIG_TARGET_${target}_${subtarget}=y" >> .config
+  echo "CONFIG_TARGET_${target}_${subtarget}_Default=y" >> .config
   echo "CONFIG_PACKAGE_example1=y" >> .config
 
-  # Debug output
-  echo "pkgarch: $pkgarch, target1: $target1"
-
   make defconfig
-  make -j `nproc` tools/install
-  make -j `nproc` toolchain/install
+
+  # build and ignore any errors (use "make V=s" for debugging)
+  make -i -j `nproc`
 
   # Build package
   make package/example1/{clean,compile}
