@@ -260,6 +260,7 @@ git commit -m "some new change to test"
 ```
 make package/example3/{clean,compile}
 ```
+(add `V=s` for compiler commands to be shown)
 
 5. Your package should now appear in bin/packages/.
 
